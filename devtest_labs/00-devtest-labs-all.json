@@ -43,7 +43,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": ""
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/01-devtest-labs-minimum.json"
                 },
                 "parameters": {
                     "name": {
