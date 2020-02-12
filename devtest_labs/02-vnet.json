@@ -31,18 +31,11 @@
                 "description": ""
             }
         },
-        "devTestLabsId": {
+        "devTestLabsName": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "A resource ID of DevTest Labs"
-            }
-        },
-        "devTestLabsUId": {
-            "type": "string",
-            "defaultValue": "",
-            "metadata": {
-                "description": "A qualifier ID of DevTest Labs"
+                "description": "A DevTest Labs name"
             }
         },
         "addressPrefix": {
@@ -85,7 +78,7 @@
         {
             "type": "Microsoft.DevTestLab/labs/virtualnetworks",
             "apiVersion": "2018-09-15",
-            "name": "[variables('vnetName')]",
+            "name": "[concat(parameters('devTestLabsName'), '/', variables('vnetName'))]",
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualnetworks', variables('vnetName'))]"

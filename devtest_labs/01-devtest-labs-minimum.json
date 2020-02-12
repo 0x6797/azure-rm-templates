@@ -72,6 +72,10 @@
             "value": "[resourceId('Microsoft.DevTestLab/labs', variables('dtlName'))]",
             "type": "string"
         },
+        "DevTestLabsName": {
+            "value": "[variables('dtlName')]",
+            "type": "string"
+        },
         "DevTestLabsUId": {
             "value": "[reference(variables('dtlName')).uniqueIdentifier]",
             "type": "string"

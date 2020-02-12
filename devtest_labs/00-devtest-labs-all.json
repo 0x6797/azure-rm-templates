@@ -99,11 +99,8 @@
                     "projectCode": {
                         "value": "[parameters('projectCode')]"
                     },
-                    "devTestLabsId": {
-                        "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsId.value]"
-                    },
-                    "devTestLabsUId": {
-                        "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsUId.value]"
+                    "devTestLabsName": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"
                     },
                     "addressPrefix": {
                         "value": "[parameters('addressPrefix')]"
