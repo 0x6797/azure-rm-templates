@@ -64,7 +64,6 @@
             "name": "[variables('vnetName')]",
             "location": "[parameters('location')]",
             "tags": {
-                "hidden-DevTestLabs-LabUId": "[parameters('devTestLabsUId')]",
                 "ProjectOwner": "[parameters('owner')]",
                 "ProjectName": "[parameters('projectName')]",
                 "ProjectCode": "[parameters('projectCode')]"
