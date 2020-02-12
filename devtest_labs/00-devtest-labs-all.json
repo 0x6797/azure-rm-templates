@@ -30,6 +30,13 @@
             "metadata": {
                 "description": "A project code"
             }
+        },
+        "addressPrefix": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "A primary address scope in this Virtual Networks"
+            }
         }
     },
     "variables": {
@@ -37,7 +44,7 @@
     },
     "resources": [
         {
-            "name": "01-devtets-labs-minimum",
+            "name": "01-devtest-labs-minimum",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2019-05-01",
             "properties": {
@@ -60,6 +67,43 @@
                     },
                     "projectCode": {
                         "value": "[parameters('projectCode')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "02-vnet",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-05-01",
+            "dependsOn": [
+                "01-devtest-labs-minimum"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/02-vnet.json"
+                },
+                "parameters": {
+                    "name": {
+                        "value": "[parameters('name')]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "owner": {
+                        "value": "[parameters('owner')]"
+                    },
+                    "projectName": {
+                        "value": "[parameters('projectName')]"
+                    },
+                    "projectCode": {
+                        "value": "[parameters('projectCode')]"
+                    },
+                    "devTestLabsUId": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsUId.value]"
+                    },
+                    "addressPrefix": {
+                        "value": "[parameters('addressPrefix')]"
                     }
                 }
             }
