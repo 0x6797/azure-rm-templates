@@ -1,0 +1,88 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]"
+        },
+        "owner": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": ""
+            }
+        },
+        "projectName": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": ""
+            }
+        },
+        "projectCode": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": ""
+            }
+        },
+        "devTestLabsId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "A resource ID of DevTest Labs"
+            }
+        },
+        "devTestLabsUId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "A qualifier ID of DevTest Labs"
+            }
+        },
+        "addressPrefix": {
+            "type": "string",
+            "defaultValue": "10.0.0.0/16",
+            "metadata": {
+                "description": "A primary address scope in this Virtual Networks"
+            }
+        }
+
+    },
+    "variables": {
+        "vnetName": "[concat('vnet-', parameters('name'))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2019-11-01",
+            "name": "[variables('vnetName')]",
+            "location": "[parameters('location')]",
+            "tags": {
+                "hidden-DevTestLabs-LabUId": "[parameters('devTestLabsUId')]",
+                "ProjectOwner": "[parameters('owner')]",
+                "ProjectName": "[parameters('projectName')]",
+                "ProjectCode": "[parameters('projectCode')]"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[parameters('addressPrefix')]"
+                    ]
+                },
+                "dhcpOptions": {
+                    "dnsServers": []
+                },
+                "virtualNetworkPeerings": [],
+                "enableDdosProtection": false,
+                "enableVmProtection": false
+            }
+        }
+
+    ]
+}

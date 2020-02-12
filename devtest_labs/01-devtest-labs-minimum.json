@@ -42,9 +42,9 @@
             "name": "[variables('dtlName')]",
             "location": "[parameters('location')]",
             "tags": {
-                "所有者": "[parameters('owner')]",
-                "プロジェクト": "[parameters('projectName')]",
-                "プロジェクト番号": "[parameters('projectCode')]"
+                "ProjectOwner": "[parameters('owner')]",
+                "ProjectName": "[parameters('projectName')]",
+                "ProjectCode": "[parameters('projectCode')]"
             },
             "properties": {
                 "labStorageType": "Premium",
