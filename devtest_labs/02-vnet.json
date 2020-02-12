@@ -84,7 +84,9 @@
                 "[resourceId('Microsoft.Network/virtualnetworks', variables('vnetName'))]"
             ],
             "properties": {
-                "allowedSubnets": [ ]
+                "allowedSubnets": [ ],
+                "externalProviderResourceId": "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]",
+                "subnetOverrides": [ ]
             }
         }
 
