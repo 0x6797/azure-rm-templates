@@ -85,10 +85,10 @@
         {
             "type": "Microsoft.DevTestLab/labs/virtualnetworks",
             "apiVersion": "2018-09-15",
-            "name": "[concat(parameters('devTestLabsId'), '/virtualNetworks/', variables('vnetName'))]",
+            "name": "[variables('vnetName')]",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]"
+                "[resourceId('Microsoft.Network/virtualnetworks', variables('vnetName'))]"
             ],
             "properties": {
                 "allowedSubnets": [ ]
