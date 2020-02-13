@@ -2,6 +2,14 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "admin": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "adminId": {
+            "type": "string",
+            "defaultValue": ""
+        },
         "name": {
             "type": "string",
             "defaultValue": ""
@@ -295,11 +303,11 @@
                     "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/10-devtest-labs-users.json"
                 },
                 "parameters": {
-                    "owner": {
-                        "value": "[parameters('owner')]"
+                    "admin": {
+                        "value": "[parameters('admin')]"
                     },
-                    "ownerId": {
-                        "value": "[parameters('ownerId')]"
+                    "adminId": {
+                        "value": "[parameters('adminId')]"
                     },
                     "devTestLabsName": {
                         "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"

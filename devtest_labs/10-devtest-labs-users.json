@@ -2,14 +2,14 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "owner": {
+        "admin": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
                 "description": ""
             }
         },
-        "ownerId": {
+        "adminId": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
@@ -51,12 +51,12 @@
         {
             "type": "microsoft.devtestlab/labs/users",
             "apiVersion": "2018-09-15",
-            "name": "[concat(parameters('devTestLabsName'), '/', parameters('ownerId'))]",
+            "name": "[concat(parameters('devTestLabsName'), '/', parameters('adminId'))]",
             "properties": {
                 "identity": {
-                    "principalName": "[parameters('owner')]",
+                    "principalName": "[parameters('admin')]",
                     "tenantId": "[subscription().tenantId]",
-                    "objectId": "[parameters('ownerId')]",
+                    "objectId": "[parameters('adminId')]",
                     "appId": "1a14be2a-e903-4cec-99cf-b2e209259a0f"
                 },
                 "secretStore": {
@@ -68,7 +68,7 @@
         {
             "type": "microsoft.devtestlab/labs/users/secrets",
             "apiVersion": "2018-09-15",
-            "name": "[concat(parameters('devTestLabsName'), '/', parameters('ownerId'), '/vmpassword')]",
+            "name": "[concat(parameters('devTestLabsName'), '/', parameters('adminId'), '/vmpassword')]",
             "properties": {}            
         }
     ]
