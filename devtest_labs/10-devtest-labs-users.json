@@ -69,9 +69,6 @@
             "type": "microsoft.devtestlab/labs/users/secrets",
             "apiVersion": "2018-09-15",
             "name": "[concat(parameters('devTestLabsName'), '/', parameters('ownerId'), '/vmpassword')]",
-            "dependsOn": [
-                "[reference(concat(parameters('devTestLabsName'), '/', parameters('ownerId')))]"
-            ],
             "properties": {}            
         }
     ]
