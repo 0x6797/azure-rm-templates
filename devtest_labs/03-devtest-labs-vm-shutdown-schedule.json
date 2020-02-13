@@ -43,9 +43,6 @@
             "type": "Microsoft.DevTestLab/labs/notificationChannels",
             "apiVersion": "2018-09-15",
             "name": "[concat(parameters('devTestLabsName'), '/AutoShutdown')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.DevTestLab/labs', parameters('devTestLabsName'))]"
-            ],
             "properties": {
                 "emailRecipient": "[parameters('owner')]",
                 "notificationLocale": "ja",
@@ -61,9 +58,6 @@
             "apiVersion": "2018-09-15",
             "name": "[concat(parameters('devTestLabsName'), '/labvmshutdown')]",
             "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.DevTestLab/labs', parameters('devTestLabsName'))]"
-            ],
             "properties": {
                 "status": "Enabled",
                 "taskType": "LabVmsShutdownTask",
