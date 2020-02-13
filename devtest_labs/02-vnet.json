@@ -68,9 +68,11 @@
                     ]
                 },
                 "dhcpOptions": {
-                    "dnsServers": []
+                    "dnsServers": [
+                    ]
                 },
-                "virtualNetworkPeerings": [],
+                "virtualNetworkPeerings": [
+                ],
                 "enableDdosProtection": false,
                 "enableVmProtection": false
             }
@@ -84,11 +86,19 @@
                 "[resourceId('Microsoft.Network/virtualnetworks', variables('vnetName'))]"
             ],
             "properties": {
-                "allowedSubnets": [ ],
+                "allowedSubnets": [
+                ],
                 "externalProviderResourceId": "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]",
-                "subnetOverrides": [ ]
+                "subnetOverrides": [
+                ]
             }
         }
 
-    ]
+    ],
+    "outputs": {
+        "VnetName": {
+            "value": "[variables('vnetName')]",
+            "type": "string"
+        }
+    }
 }

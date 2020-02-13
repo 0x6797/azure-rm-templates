@@ -18,6 +18,8 @@ DevTest Labs を作成し、テスト環境に必要な一連の Azure リソー
     - DevTest Labs で使用するデフォルトの Blob サービス
 - 07-devtest-labs-file.json
     - DevTest Labs で使用するデフォルトの File サービス
+- 08-azure-bastion-subnet.json
+    - Azure Bastion 用のサブネットを作成するテンプレート
 
 ### 作成する Azure リソース
 
