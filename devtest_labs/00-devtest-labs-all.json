@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "name": {
@@ -37,6 +37,20 @@
             "metadata": {
                 "description": "A primary address scope in this Virtual Networks"
             }
+        },
+        "time": {
+            "type": "string",
+            "defaultValue": "1900",
+            "metadata": {
+                "description": "A time to shutdown VMs with 'HHmm'"
+            }
+        },
+        "timeZoneId": {
+            "type": "string",
+            "defaultValue": "Tokyo Standard Time",
+            "metadata": {
+                "description": "A timezone ID"
+            }
         }
     },
     "variables": {
@@ -46,7 +60,7 @@
         {
             "name": "01-devtest-labs-minimum",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-05-01",
+            "apiVersion": "2017-05-10",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
@@ -74,7 +88,7 @@
         {
             "name": "02-vnet",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-05-01",
+            "apiVersion": "2017-05-10",
             "dependsOn": [
                 "01-devtest-labs-minimum"
             ],
@@ -104,6 +118,37 @@
                     },
                     "addressPrefix": {
                         "value": "[parameters('addressPrefix')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "03-devtest-labs-vm-shutdown-schedule",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "dependsOn": [
+                "01-devtest-labs-minimum"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/03-devtest-labs-vm-shutdown-schedule.json"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "owner": {
+                        "value": "[parameters('owner')]"
+                    },
+                    "devTestLabsName": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"
+                    },
+                    "time": {
+                        "value": "[parameters('time')]"
+                    },
+                    "timeZoneId": {
+                        "value": "[parameters('timeZoneId')]"
                     }
                 }
             }
