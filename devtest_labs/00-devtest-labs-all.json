@@ -61,7 +61,8 @@
         }
     },
     "variables": {
-
+        "primarySubnetIps": "[split(parameters('addressPrefix'), '.')]",
+        "primarySubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(variables('primarySubnetIps')[3]), 32))]"
     },
     "resources": [
         {
@@ -251,6 +252,31 @@
                     },
                     "addressPrefix": {
                         "value": "[parameters('addressPrefix')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "09-primary-subnet",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "dependsOn": [
+                "02-vnet"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/09-primary-subnet.json"
+                },
+                "parameters": {
+                    "name": {
+                        "value": "[parameters('name')]"
+                    },
+                    "vnetName": {
+                        "value": "[reference('02-vnet').outputs.vnetName.value]"
+                    },
+                    "subnetCidr": {
+                        "value": "[variables('primarySubnetCidr')]"
                     }
                 }
             }

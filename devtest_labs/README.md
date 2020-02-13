@@ -8,6 +8,7 @@ DevTest Labs を作成し、テスト環境に必要な一連の Azure リソー
     - 最小限の DevTest Labs インスタンスを作成するテンプレート
 - 02-vnet.json
     - 仮想ネットワークを作成し、DevTest Labs と関連付けるテンプレート
+    - CIDR のサブネットマスクビットは 26 以上を想定している。(例: '192.168.0.0/26')
 - 03-devtest-labs-vm-shutdown-schedule.json
     - DevTest Labs で作成する仮想マシンの自動シャットダウンの設定をするテンプレート
 - 04-devtest-labs-artifacts.json
@@ -20,6 +21,10 @@ DevTest Labs を作成し、テスト環境に必要な一連の Azure リソー
     - DevTest Labs で使用するデフォルトの File サービス
 - 08-azure-bastion-subnet.json
     - Azure Bastion 用のサブネットを作成するテンプレート
+    - 仮想ネットワークで指定されたサブネットマスクを */27 に設定する。（例: '192.168.0.0/27')
+- 09-primary-subnet.json
+    - 仮想マシン用のサブネットを作成するテンプレート
+    - 仮想ネットワークで指定されたサブネットマスクに 32 を足して */27 に設定する (例: '192.168.0.32/27')
 
 ### 作成する Azure リソース
 
