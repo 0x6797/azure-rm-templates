@@ -56,11 +56,11 @@
         {
             "type": "Microsoft.DevTestLab/labs/schedules",
             "apiVersion": "2018-09-15",
-            "name": "[concat(parameters('devTestLabsName'), '/labvmshutdown')]",
+            "name": "[concat(parameters('devTestLabsName'), '/labvmsshutdown')]",
             "location": "[parameters('location')]",
             "properties": {
                 "status": "Enabled",
-                "taskType": "LabVmsShutdown",
+                "taskType": "LabVmsShutdownTask",
                 "dailyRecurrence": {
                     "time": "[parameters('time')]"
                 },
