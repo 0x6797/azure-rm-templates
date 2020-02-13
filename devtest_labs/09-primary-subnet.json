@@ -37,5 +37,11 @@
                 "privateLinkServiceNetworkPolicies": "Enabled"
             }
         }
-    ]
+    ],
+    "outputs": {
+        "primarySubnetName": {
+            "type": "string",
+            "value": "[variables('snetName')]"
+        }
+    }
 }

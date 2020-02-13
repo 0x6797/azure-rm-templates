@@ -281,6 +281,33 @@
                     }
                 }
             }
+        },
+        {
+            "name": "10-subnet-override",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "dependsOn": [
+                "02-vnet",
+                "08-azure-bastion-subnet",
+                "09-primary-subnet"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/subnet-config/devtest_labs/10-subnet-override.json"
+                },
+                "parameters": {
+                    "devTestLabsName": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"
+                    },
+                    "vnetName": {
+                        "value": "[reference('02-vnet').outputs.vnetName.value]"
+                    },
+                    "primarySubnetName": {
+                        "value": "[reference('09-primary-subnet').outputs.primarySubnetName.value]"
+                    }
+                }
+            }
         }
     ]
 }
