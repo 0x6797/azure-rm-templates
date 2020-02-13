@@ -261,7 +261,8 @@
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2017-05-10",
             "dependsOn": [
-                "02-vnet"
+                "02-vnet",
+                "08-azure-bastion-subnet"
             ],
             "properties": {
                 "mode": "Incremental",
@@ -307,10 +308,10 @@
                         "value": "[reference('01-devtest-labs-minimum').outputs.storageAccountName.value]"
                     },
                     "vaultId": {
-                        "value": "[reference('01-devtest-labs-minimum').outputs.keyValutId.value]"
+                        "value": "[reference('01-devtest-labs-minimum').outputs.keyVaultId.value]"
                     },
                     "vaultName": {
-                        "value": "[reference('01-devtest-labs-minimum').outputs.keyValutName.value]"
+                        "value": "[reference('01-devtest-labs-minimum').outputs.keyVaultName.value]"
                     }
                 }
             }
