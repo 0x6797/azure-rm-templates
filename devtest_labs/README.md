@@ -10,6 +10,8 @@ DevTest Labs を作成し、テスト環境に必要な一連の Azure リソー
     - 仮想ネットワークを作成し、DevTest Labs と関連付けるテンプレート
 - 03-devtest-labs-vm-shutdown-schedule.json
     - DevTest Labs で作成する仮想マシンの自動シャットダウンの設定をするテンプレート
+- 04-devtest-labs-artifacts.json
+    - DevTest Labs の成果物を設定するテンプレート
 
 
 ### 作成する Azure リソース

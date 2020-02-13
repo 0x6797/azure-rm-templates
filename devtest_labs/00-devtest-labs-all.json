@@ -152,6 +152,25 @@
                     }
                 }
             }
+        },
+        {
+            "name": "04-devtest-labs-artifacts",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "dependsOn": [
+                "01-devtest-labs-minimum"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/04-devtest-labs-artifacts.json"
+                },
+                "parameters": {
+                    "devTestLabsName": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"
+                    }
+                }
+            }
         }
     ]
 }
