@@ -12,11 +12,15 @@ DevTest Labs を作成し、テスト環境に必要な一連の Azure リソー
     - DevTest Labs で作成する仮想マシンの自動シャットダウンの設定をするテンプレート
 - 04-devtest-labs-artifacts.json
     - DevTest Labs の成果物を設定するテンプレート
+- 05-resource-group-owner.json
+    - 指定された ID をこのリソースグループの "所有者" に設定するテンプレート
 
 
 ### 作成する Azure リソース
 
 - DevTest Labs
+    - 自動シャットダウンスケジュール
+    - 成果物
 - ストレージアカウント
 - Key Vault
 - 仮想ネットワーク

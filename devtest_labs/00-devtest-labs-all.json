@@ -17,6 +17,13 @@
                 "description": "A project owner's email address"
             }
         },
+        "ownerId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "A owner's object ID"
+            }
+        },
         "projectName": {
             "type": "string",
             "defaultValue": "",
@@ -168,6 +175,22 @@
                 "parameters": {
                     "devTestLabsName": {
                         "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "05-resource-group-owner",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/05-resource-group-owner.json"
+                },
+                "parameters": {
+                    "ownerId": {
+                        "value": "[parameters('ownerId')]"
                     }
                 }
             }
