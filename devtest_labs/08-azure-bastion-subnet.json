@@ -25,9 +25,6 @@
             "type": "Microsoft.Network/virtualNetworks/subnets",
             "apiVersion": "2019-11-01",
             "name": "[concat(parameters('vnetName'), '/AzureBastionSubnet')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
-            ],
             "properties": {
                 "addressPrefix": "[variables('bastionCidr')]",
                 "serviceEndpoints": [],
