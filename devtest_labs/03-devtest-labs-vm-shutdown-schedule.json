@@ -59,7 +59,7 @@
         {
             "type": "Microsoft.DevTestLab/labs/schedules",
             "apiVersion": "2018-09-15",
-            "name": "[concat(parameters('devTestLabsName'), 'labvmshutdown')]",
+            "name": "[concat(parameters('devTestLabsName'), '/labvmshutdown')]",
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.DevTestLab/labs', parameters('devTestLabsName'))]"
