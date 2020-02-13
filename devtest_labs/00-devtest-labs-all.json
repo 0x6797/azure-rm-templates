@@ -62,7 +62,7 @@
     },
     "variables": {
         "primarySubnetIps": "[split(parameters('addressPrefix'), '.')]",
-        "primarySubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(variables('primarySubnetIps')[3]), 32))]"
+        "primarySubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(first(split(variables('primarySubnetIps')[3], '/'))), 32))]"
     },
     "resources": [
         {
@@ -277,6 +277,40 @@
                     },
                     "subnetCidr": {
                         "value": "[variables('primarySubnetCidr')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "10-devtest-labs-users.json",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "dependsOn": [
+                "01-devtest-labs-minimum"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/10-devtest-labs-users.json"
+                },
+                "parameters": {
+                    "owner": {
+                        "value": "[parameters('owner')]"
+                    },
+                    "ownerId": {
+                        "value": "[parameters('ownerId')]"
+                    },
+                    "devTestLabsName": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"
+                    },
+                    "storageAccountName": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.storageAccountName.value]"
+                    },
+                    "vaultId": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.keyValutId.value]"
+                    },
+                    "vaultName": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.keyValutName.value]"
                     }
                 }
             }
