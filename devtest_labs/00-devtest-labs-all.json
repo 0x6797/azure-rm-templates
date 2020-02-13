@@ -194,6 +194,44 @@
                     }
                 }
             }
+        },
+        {
+            "name": "06-devtest-labs-blob.json",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "dependsOn": [
+                "01-devtest-labs-minimum"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/06-devtest-labs-blob.json"
+                },
+                "parameters": {
+                    "storageAccountName": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.storageAccountName.value]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "07-devtest-labs-file.json",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "dependsOn": [
+                "01-devtest-labs-minimum"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/07-devtest-labs-file.json"
+                },
+                "parameters": {
+                    "storageAccountName": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.storageAccountName.value]"
+                    }
+                }
+            }
         }
     ]
 }

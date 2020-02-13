@@ -14,7 +14,10 @@ DevTest Labs を作成し、テスト環境に必要な一連の Azure リソー
     - DevTest Labs の成果物を設定するテンプレート
 - 05-resource-group-owner.json
     - 指定された ID をこのリソースグループの "所有者" に設定するテンプレート
-
+- 06-devtest-labs-blob.json
+    - DevTest Labs で使用するデフォルトの Blob サービス
+- 07-devtest-labs-file.json
+    - DevTest Labs で使用するデフォルトの File サービス
 
 ### 作成する Azure リソース
 

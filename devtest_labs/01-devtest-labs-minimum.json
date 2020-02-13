@@ -81,11 +81,19 @@
             "type": "string"
         },
         "StorageAccountId": {
-            "value": "[reference(variables('dtlName')).artifactsStorageAccount]",
+            "value": "[reference(variables('dtlName')).defaultStorageAccount]",
+            "type": "string"
+        },
+        "StorageAccountName": {
+            "value": "[reference(variables('dtlName')).defaultStorageAccount.name]",
             "type": "string"
         },
         "KeyVaultId": {
             "value": "[reference(variables('dtlName')).vaultName]",
+            "type": "string"
+        },
+        "KeyVaultName": {
+            "value": "[reference(variables('dtlName')).vaultName.name]",
             "type": "string"
         }
     }
