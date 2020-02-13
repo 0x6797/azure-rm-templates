@@ -85,7 +85,7 @@
             "type": "string"
         },
         "StorageAccountName": {
-            "value": "[reference(variables('dtlName')).defaultStorageAccount.name]",
+            "value": "[reference(reference(variables('dtlName')).defaultStorageAccount).name]",
             "type": "string"
         },
         "KeyVaultId": {
@@ -93,7 +93,7 @@
             "type": "string"
         },
         "KeyVaultName": {
-            "value": "[reference(variables('dtlName')).vaultName.name]",
+            "value": "[reference(reference(variables('dtlName')).vaultName).name]",
             "type": "string"
         }
     }
