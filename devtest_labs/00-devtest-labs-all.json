@@ -2,14 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "admin": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "adminId": {
-            "type": "string",
-            "defaultValue": ""
-        },
         "name": {
             "type": "string",
             "defaultValue": ""
@@ -286,40 +278,6 @@
                     },
                     "subnetCidr": {
                         "value": "[variables('primarySubnetCidr')]"
-                    }
-                }
-            }
-        },
-        {
-            "name": "10-devtest-labs-users.json",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2017-05-10",
-            "dependsOn": [
-                "01-devtest-labs-minimum"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/10-devtest-labs-users.json"
-                },
-                "parameters": {
-                    "admin": {
-                        "value": "[parameters('admin')]"
-                    },
-                    "adminId": {
-                        "value": "[parameters('adminId')]"
-                    },
-                    "devTestLabsName": {
-                        "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"
-                    },
-                    "storageAccountName": {
-                        "value": "[reference('01-devtest-labs-minimum').outputs.storageAccountName.value]"
-                    },
-                    "vaultId": {
-                        "value": "[reference('01-devtest-labs-minimum').outputs.keyVaultId.value]"
-                    },
-                    "vaultName": {
-                        "value": "[reference('01-devtest-labs-minimum').outputs.keyVaultName.value]"
                     }
                 }
             }

@@ -25,8 +25,6 @@ DevTest Labs を作成し、テスト環境に必要な一連の Azure リソー
 - 09-primary-subnet.json
     - 仮想マシン用のサブネットを作成するテンプレート
     - 仮想ネットワークで指定されたサブネットマスクに 32 を足して */27 に設定する (例: '192.168.0.32/27')
-- 10-devtest-labs-users.json
-    - DevTest Labs に所有者の KeyValut 等を設定するテンプレート
 
 ### 作成する Azure リソース
 
