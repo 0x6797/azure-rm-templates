@@ -62,7 +62,8 @@
     },
     "variables": {
         "primarySubnetIps": "[split(parameters('addressPrefix'), '.')]",
-        "primarySubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(first(split(variables('primarySubnetIps')[3], '/'))), 32))]"
+        "primarySubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(first(split(variables('primarySubnetIps')[3], '/'))), 32))]",
+        "creationDate": "[utcNow()]"
     },
     "resources": [
         {
@@ -89,6 +90,9 @@
                     },
                     "projectCode": {
                         "value": "[parameters('projectCode')]"
+                    },
+                    "creationDate": {
+                        "value": "[variables('creationDate')]"
                     }
                 }
             }
@@ -120,6 +124,9 @@
                     },
                     "projectCode": {
                         "value": "[parameters('projectCode')]"
+                    },
+                    "creationDate": {
+                        "value": "[variables('creationDate')]"
                     },
                     "devTestLabsName": {
                         "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"
@@ -190,6 +197,18 @@
                     "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/05-resource-group-owner.json"
                 },
                 "parameters": {
+                    "owner": {
+                        "value": "[parameters('owner')]"
+                    },
+                    "projectName": {
+                        "value": "[parameters('projectName')]"
+                    },
+                    "projectCode": {
+                        "value": "[parameters('projectCode')]"
+                    },
+                    "creationDate": {
+                        "value": "[variables('creationDate')]"
+                    },
                     "ownerId": {
                         "value": "[parameters('ownerId')]"
                     }
