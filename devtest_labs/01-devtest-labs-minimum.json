@@ -30,6 +30,10 @@
             "metadata": {
                 "description": ""
             }
+        },
+        "creationDate": {
+            "type": "string",
+            "defaultValue": ""
         }
     },
     "variables": {
@@ -44,7 +48,8 @@
             "tags": {
                 "ProjectOwner": "[parameters('owner')]",
                 "ProjectName": "[parameters('projectName')]",
-                "ProjectCode": "[parameters('projectCode')]"
+                "ProjectCode": "[parameters('projectCode')]",
+                "CreationDate": "[parameters('creationDate')]"
             },
             "properties": {
                 "labStorageType": "Premium",

@@ -31,6 +31,10 @@
                 "description": ""
             }
         },
+        "creationDate": {
+            "type": "string",
+            "defaultValue": ""
+        },
         "devTestLabsName": {
             "type": "string",
             "defaultValue": "",
@@ -59,7 +63,8 @@
             "tags": {
                 "ProjectOwner": "[parameters('owner')]",
                 "ProjectName": "[parameters('projectName')]",
-                "ProjectCode": "[parameters('projectCode')]"
+                "ProjectCode": "[parameters('projectCode')]",
+                "CreationDate": "[parameters('creationDate')]"
             },
             "properties": {
                 "addressSpace": {
