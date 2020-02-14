@@ -267,7 +267,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/09-primary-subnet.json"
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/subnet-config/devtest_labs/09-primary-subnet.json"
                 },
                 "parameters": {
                     "name": {
