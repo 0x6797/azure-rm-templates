@@ -15,10 +15,13 @@
             "metadata": {
                 "description": "A primary address scope in this Virtual Networks"
             }
+        },
+        "subnetCidr": {
+            "type": "string",
+            "defaultValue": ""
         }
     },
     "variables": {
-        "bastionCidr": "[concat(first(split(parameters('addressPrefix'), '/')), '/27')]"
     },
     "resources": [
         {
@@ -26,7 +29,7 @@
             "apiVersion": "2019-11-01",
             "name": "[concat(parameters('vnetName'), '/AzureBastionSubnet')]",
             "properties": {
-                "addressPrefix": "[variables('bastionCidr')]",
+                "addressPrefix": "[parameters('subnetCidr')]",
                 "serviceEndpoints": [],
                 "delegations": [],
                 "privateEndpointNetworkPolicies": "Enabled",

@@ -69,7 +69,8 @@
     },
     "variables": {
         "primarySubnetIps": "[split(parameters('addressPrefix'), '.')]",
-        "primarySubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(first(split(variables('primarySubnetIps')[3], '/'))), 32))]"
+        "primarySubnetCidr": "[concat(first(split(parameters('addressPrefix'), '/')), '/27')]",
+        "bastionSubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(first(split(variables('primarySubnetIps')[3], '/'))), 32))]"
     },
     "resources": [
         {
@@ -277,6 +278,9 @@
                     },
                     "addressPrefix": {
                         "value": "[parameters('addressPrefix')]"
+                    },
+                    "subnetCidr": {
+                        "value": "[variables('bastionSubnetCidr')]"
                     }
                 }
             }
