@@ -294,7 +294,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/subnet-config/devtest_labs/10-subnet-override.json"
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/10-subnet-override.json"
                 },
                 "parameters": {
                     "devTestLabsName": {
