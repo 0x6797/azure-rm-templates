@@ -47,18 +47,6 @@
                 "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', variables('roleId'))]",
                 "principalId": "[parameters('ownerId')]"
             }
-        },
-        {
-            "type": "Microsoft.Resources/resourceGroups",
-            "apiVersion": "2018-05-01",
-            "name": "[resourceGroup().name]",
-            "location": "[resourceGroup().location]",
-            "tags": {
-                "ProjectOwner": "[parameters('owner')]",
-                "ProjectName": "[parameters('projectName')]",
-                "ProjectCode": "[parameters('projectCode')]",
-                "CreationDate": "[parameters('creationDate')]"
-            }
         }
     ]
 }
