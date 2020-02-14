@@ -38,6 +38,13 @@
                 "description": "A project code"
             }
         },
+        "creationDate": {
+            "type": "string",
+            "defaultValue": "[utcNow()]",
+            "metadata": {
+                "description": "Creation Date"
+            }
+        },
         "addressPrefix": {
             "type": "string",
             "defaultValue": "",
@@ -62,8 +69,7 @@
     },
     "variables": {
         "primarySubnetIps": "[split(parameters('addressPrefix'), '.')]",
-        "primarySubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(first(split(variables('primarySubnetIps')[3], '/'))), 32))]",
-        "creationDate": "[utcNow()]"
+        "primarySubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(first(split(variables('primarySubnetIps')[3], '/'))), 32))]"
     },
     "resources": [
         {
@@ -92,7 +98,7 @@
                         "value": "[parameters('projectCode')]"
                     },
                     "creationDate": {
-                        "value": "[variables('creationDate')]"
+                        "value": "[parameters('creationDate')]"
                     }
                 }
             }
@@ -126,7 +132,7 @@
                         "value": "[parameters('projectCode')]"
                     },
                     "creationDate": {
-                        "value": "[variables('creationDate')]"
+                        "value": "[parameters('creationDate')]"
                     },
                     "devTestLabsName": {
                         "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"
@@ -207,7 +213,7 @@
                         "value": "[parameters('projectCode')]"
                     },
                     "creationDate": {
-                        "value": "[variables('creationDate')]"
+                        "value": "[parameters('creationDate')]"
                     },
                     "ownerId": {
                         "value": "[parameters('ownerId')]"
