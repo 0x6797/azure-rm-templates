@@ -61,9 +61,26 @@
         },
         "timeZoneId": {
             "type": "string",
+            "minLength": 3,
             "defaultValue": "Tokyo Standard Time",
             "metadata": {
-                "description": "A timezone ID"
+                "description": "The Windows time zone id associated with labVmShutDownTime (E.g. UTC, Pacific Standard Time, Central Europe Standard Time)."
+            }
+        },
+        "maxAllowedVmsPerUser": {
+            "type": "int",
+            "minValue": 0,
+            "defaultValue": 12,
+            "metadata": {
+                "description": "The maximum number of VMs allowed per user."
+            }
+        },
+        "maxAllowedVmsPerLab": {
+            "type": "int",
+            "minValue": 0,
+            "defaultValue": 31,
+            "metadata": {
+                "description": "The maximum number of VMs allowed per lab."
             }
         }
     },
@@ -334,6 +351,31 @@
                     },
                     "primarySubnetName": {
                         "value": "[reference('09-primary-subnet').outputs.primarySubnetName.value]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "11-devtest-labs-vm-limits",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "dependsOn": [
+                "01-devtest-labs-minimum"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/11-devtest-labs-vm-limits.json"
+                },
+                "parameters": {
+                    "devTestLabsName": {
+                        "value": "[reference('01-devtest-labs-minimum').outputs.devTestLabsName.value]"
+                    },
+                    "maxAllowedVmsPerUser": {
+                        "value": "[parameters('maxAllowedVmsPerUser')]"
+                    },
+                    "maxAllowedVmsPerLab": {
+                        "value": "[parameters('maxAllowedVmsPerLab')]"
                     }
                 }
             }
