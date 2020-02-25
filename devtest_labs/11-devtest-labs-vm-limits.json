@@ -10,7 +10,7 @@
             "type": "int",
             "defaultValue": 10
         },
-        "maxAllowedVmsPerLab": {
+        "maxAllowedVmsPerLabs": {
             "type": "int",
             "defaultValue": 31
         }
@@ -32,12 +32,12 @@
         },
         {
             "type": "Microsoft.DevTestLab/labs/policysets/policies",
-            "name": "[concat(parameters('devTestLabsName'), '/', 'default/MaxVMsAllowedPerLabs')]",
+            "name": "[concat(parameters('devTestLabsName'), '/', 'default/MaxVMsAllowedPerLab')]",
             "apiVersion": "2018-09-15",
             "properties": {
                 "description": "",
                 "factName": "LabVmCount",
-                "threshold": "[string(parameters('maxAllowedVmsPerLab'))]",
+                "threshold": "[string(parameters('maxAllowedVmsPerLabs'))]",
                 "evaluatorType": "MaxValuePolicy",
                 "status": "enabled"
             }
