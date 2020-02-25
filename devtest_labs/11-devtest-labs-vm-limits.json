@@ -10,7 +10,7 @@
             "type": "int",
             "defaultValue": 10
         },
-        "maxAllowedVmsPerLabs": {
+        "maxAllowedVmsPerLab": {
             "type": "int",
             "defaultValue": 31
         }
@@ -37,7 +37,7 @@
             "properties": {
                 "description": "",
                 "factName": "LabVmCount",
-                "threshold": "[string(parameters('maxAllowedVmsPerLabs'))]",
+                "threshold": "[string(parameters('maxAllowedVmsPerLab'))]",
                 "evaluatorType": "MaxValuePolicy",
                 "status": "enabled"
             }
