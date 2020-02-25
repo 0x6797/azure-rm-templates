@@ -28,6 +28,10 @@ DevTest Labs を作成し、テスト環境に必要な一連の Azure リソー
 - 10-subnet-override.json
     - DevTest Labs にサブネットを関連付ける
     - Primary Subnet で仮想マシンを作成できるようにする
+- 11-devtest-labs-vm-limits.json
+    - DevTest Labs で作成できる仮想マシンを以下の単位で制限する
+        - ユーザー毎
+        - ラボ全体
 
 ### 作成する Azure リソース
 
