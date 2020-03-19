@@ -82,12 +82,27 @@
             "metadata": {
                 "description": "The maximum number of VMs allowed per lab."
             }
+        },
+        "templatesStorageAccounts": {
+            "type": "string",
+            "metadata": {
+                "description": "A storage accounts name where ARM Templates are."
+            }
+        },
+        "sasToken": {
+            "type": "string",
+            "metadata": {
+                "description": "A shared account signature"
+            }
         }
     },
     "variables": {
         "primarySubnetIps": "[split(parameters('addressPrefix'), '.')]",
         "primarySubnetCidr": "[concat(first(split(parameters('addressPrefix'), '/')), '/27')]",
-        "bastionSubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(first(split(variables('primarySubnetIps')[3], '/'))), 32))]"
+        "bastionSubnetCidr": "[format('{0}.{1}.{2}.{3}/27', variables('primarySubnetIps')[0], variables('primarySubnetIps')[1], variables('primarySubnetIps')[2], add(int(first(split(variables('primarySubnetIps')[3], '/'))), 32))]",
+        "baseUri": "file.core.windows.net",
+        "dtlTemplatePath": "shared/azure-rm-templates/devtest_labs",
+        "templatesUri": "[format('https://{0}.{1}/{2}/', parameters('templatesStorageAccounts'), variables('baseUri'), variables('dtlTemplatePath'))]"
     },
     "resources": [
         {
@@ -97,7 +112,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/01-devtest-labs-minimum.json"
+                    "uri": "[concat(variables('templatesUri'), '01-devtest-labs-minimum.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "name": {
@@ -131,7 +146,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/02-vnet.json"
+                    "uri": "[concat(variables('templatesUri'), '02-vnet.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "name": {
@@ -171,7 +186,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/03-devtest-labs-vm-shutdown-schedule.json"
+                    "uri": "[concat(variables('templatesUri'), '03-devtest-labs-vm-shutdown-schedule.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "location": {
@@ -202,7 +217,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/04-devtest-labs-artifacts.json"
+                    "uri": "[concat(variables('templatesUri'), '04-devtest-labs-artifacts.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "devTestLabsName": {
@@ -218,7 +233,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/05-resource-group-owner.json"
+                    "uri": "[concat(variables('templatesUri'), '05-resource-group-owner.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "owner": {
@@ -249,7 +264,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/06-devtest-labs-blob.json"
+                    "uri": "[concat(variables('templatesUri'), '06-devtest-labs-blob.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "storageAccountName": {
@@ -268,7 +283,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/07-devtest-labs-file.json"
+                    "uri": "[concat(variables('templatesUri'), '07-devtest-labs-file.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "storageAccountName": {
@@ -287,7 +302,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/08-azure-bastion-subnet.json"
+                    "uri": "[concat(variables('templatesUri'), '08-azure-bastion-subnet.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "vnetName": {
@@ -313,7 +328,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/09-primary-subnet.json"
+                    "uri": "[concat(variables('templatesUri'), '09-primary-subnet.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "name": {
@@ -340,7 +355,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/10-subnet-override.json"
+                    "uri": "[concat(variables('templatesUri'), '10-subnet-override.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "devTestLabsName": {
@@ -365,7 +380,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/0x6797/azure-rm-templates/master/devtest_labs/11-devtest-labs-vm-limits.json"
+                    "uri": "[concat(variables('templatesUri'), '11-devtest-labs-vm-limits.json', parameters('sasToken'))]"
                 },
                 "parameters": {
                     "devTestLabsName": {
