@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "name": {
+        "baseName": {
             "type": "string",
             "defaultValue": ""
         },
@@ -116,7 +116,7 @@
                 },
                 "parameters": {
                     "name": {
-                        "value": "[parameters('name')]"
+                        "value": "[parameters('baseName')]"
                     },
                     "location": {
                         "value": "[parameters('location')]"
@@ -150,7 +150,7 @@
                 },
                 "parameters": {
                     "name": {
-                        "value": "[parameters('name')]"
+                        "value": "[parameters('baseName')]"
                     },
                     "location": {
                         "value": "[parameters('location')]"
@@ -332,7 +332,7 @@
                 },
                 "parameters": {
                     "name": {
-                        "value": "[parameters('name')]"
+                        "value": "[parameters('baseName')]"
                     },
                     "vnetName": {
                         "value": "[reference('02-vnet').outputs.vnetName.value]"
